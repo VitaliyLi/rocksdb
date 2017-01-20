@@ -2821,6 +2821,15 @@ class ModelDB : public DB {
       sizes[i] = 0;
     }
   }
+  using DB::GetApproximateMemTableStats;
+  virtual void GetApproximateMemTableStats(
+      ColumnFamilyHandle* column_family,
+      const Range* range, int n, uint64_t* counts, uint64_t* sizes) override {
+    for (int i = 0; i < n; i++) {
+      counts[i] = 0;
+      sizes[i] = 0;
+    }
+  }
   using DB::CompactRange;
   virtual Status CompactRange(const CompactRangeOptions& options,
                               ColumnFamilyHandle* column_family,

@@ -138,8 +138,12 @@ class DBImpl : public DB {
   using DB::GetApproximateSizes;
   virtual void GetApproximateSizes(ColumnFamilyHandle* column_family,
                                    const Range* range, int n, uint64_t* sizes,
-                                   uint8_t include_flags 
+                                   uint8_t include_flags
                                    = INCLUDE_FILES) override;
+  using DB::GetApproximateMemTableStats;
+  virtual void GetApproximateMemTableStats(
+      ColumnFamilyHandle* column_family,
+      const Range* range, int n, uint64_t* counts, uint64_t* sizes) override;
   using DB::CompactRange;
   virtual Status CompactRange(const CompactRangeOptions& options,
                               ColumnFamilyHandle* column_family,
